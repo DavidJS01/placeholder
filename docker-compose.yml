@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  defi-db:
+    container_name: defi-db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5436:5436'
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+      - dev-network
+
+volumes:
+  db:
+    driver: local
+networks:
+  dev-network:
+    driver: bridge
